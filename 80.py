@@ -13,23 +13,41 @@ class Solution(object):
         """
         if not nums: 
             return 0
-        if len(nums)==1:
-            return 1
-        i=0
-        j=i+1
-        while j<len(nums):
-            if not nums[i]==nums[j]:
-                nums[i+1]=nums[j]
-                i+=1
-                j+=1
-            else:
-                nums[i+1]=nums[j]
-                i+=1
-                while j+1<len(nums) and nums[j]==nums[j+1]:
+        j,counter=0,0
+        for i in range(1, len(nums)):
+            if nums[i]==nums[j]:
+                counter+=1
+                if counter<2:
                     j+=1
+                    nums[j]=nums[i]
+            else:
                 j+=1
-        return i+1
+                nums[j]=nums[i]
+                counter=0
+        return j+1
+                
+
+        # if not nums: 
+        #     return 0
+        # if len(nums)==1:
+        #     return 1
+        # if len(nums)==2:
+        #     return 2
+        # i=0
+        # j=i+1
+        # while j<len(nums):
+        #     if not nums[i]==nums[j]:
+        #         nums[i+1]=nums[j]
+        #         i+=1
+        #         j+=1
+        #     else:
+        #         nums[i+1]=nums[j]
+        #         i+=1
+        #         while j+1<len(nums) and nums[j]==nums[j+1]:
+        #             j+=1
+        #         j+=1
+        # return i+1
 
 a = Solution()
-nums = [1,2]
+nums = [1,1,1,2,2]
 print(a.removeDuplicates(nums))
