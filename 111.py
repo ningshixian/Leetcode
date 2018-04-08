@@ -19,19 +19,19 @@ class Solution(object):
         :rtype: int
         """
         if not root:
-            return 0
-        depth = 0
-        Q = [root]
+            return
+        Q=[root]
+        depth=0
         while Q:
             lenth = len(Q)
             while lenth:
-                a = Q[0]
+                a=Q[0]
                 Q=Q[1:]
                 if a.left:
                     Q.append(a.left)
                 if a.right:
                     Q.append(a.right)
-                if not a.left and not a.right:
+                if not a.left and a.right:
                     return depth+1
                 lenth-=1
             depth+=1
