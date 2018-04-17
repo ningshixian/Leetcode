@@ -30,13 +30,20 @@ class Solution(object):
         """
         if not root:
             return False
+        return self.dfs(root, sum, 0)
 
-        if not root.left and not root.right and root.val == sum:
-            return True
-        
-        sum -= root.val
-
-        return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
+    def dfs(self, root, target, sum):
+        if not root:
+            return False
+        sum+=root.val
+        if not root.left and not root.right:
+            if sum==target:
+                return True
+            else:
+                return False
+        l = self.dfs(root.left, target, sum)
+        r = self.dfs(root.right, target, sum)
+        return l or r
 
 
 s = Solution()
